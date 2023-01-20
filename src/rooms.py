@@ -9,7 +9,7 @@ class Rooms:
    
    def check_in(self, guest):
       if self.space_available > 0:
-         self.guests.append(guest)
+         self.guests.append(guest.name)
          self.space_available -= 1
          self.pay_entry(guest)
       else:
