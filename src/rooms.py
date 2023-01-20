@@ -5,7 +5,7 @@ class Rooms:
       self.room_number = room_number
       self.space_available = 5
       self.guests = []
-      self.songs = []
+      self.songs = {}
    
    def check_in(self, guest):
       if self.space_available > 0:
@@ -20,10 +20,10 @@ class Rooms:
       self.space_available += 1
 
    def add_song(self, song):
-      self.songs.append(song)
+      self.songs.update({song.title: song.artist})
 
    def remove_song(self, song):
-      self.songs.remove(song)
+      del(self.songs[song])
 
    def pay_entry(self, guest):
       guest.cash -= 7

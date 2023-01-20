@@ -9,7 +9,9 @@ class TestRooms(unittest.TestCase):
         self.room_1 = Rooms(1)
         self.guest_1 = Guests('Lewis', 100, 'House Of Wolves')
         self.guest_2 = Guests('Emily', 20, 'Chelsea Dagger')
-        
+        self.song_1 = Songs('House Of Wolves', 'BMTH')
+        self.song_2 = Songs('Chelsea Dagger', 'BMTH')
+         
     def test_room_number(self):
         self.assertEqual(1, self.room_1.room_number)
                 
@@ -34,16 +36,16 @@ class TestRooms(unittest.TestCase):
         self.assertEqual([], self.room_1.guests)
 
     def test_add_song(self):
-        self.room_1.add_song('House Of Wolves')
+        self.room_1.add_song(self.song_1)
         song_list = self.room_1.songs
-        self.room_1.add_song('Chelsea Smile')
-        self.assertEqual(['House Of Wolves', 'Chelsea Smile'], song_list)
+        self.room_1.add_song(self.song_2)
+        self.assertEqual({'House Of Wolves': 'BMTH', 'Chelsea Dagger': 'BMTH'}, song_list)
 
     def test_remove_song(self):
-        self.room_1.add_song('House Of Wolves')
+        self.room_1.add_song(self.song_1)
         song_list = self.room_1.songs
         self.room_1.remove_song('House Of Wolves')
-        self.assertEqual([], song_list)
+        self.assertEqual({}, song_list)
 
     def test_no_space_remaining(self):
         self.room_1.space_available = 1
